@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-06 22:45:40
+ * @LastEditTime: 2024-08-06 23:00:16
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -98,4 +98,26 @@ void main() {
   }
 
   free(thisline);
+
+  /**
+   * 3. case 的范围
+   */
+
+  int val = 0;
+  const char name[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+  const char *tmp = NULL;
+  tmp = name;
+
+  for (;; tmp++) {
+    switch (*tmp) {
+    case '0' ... '8':
+      val = 10 * val + (*tmp - '0');
+      printf("*tmp: %c, val: %d\n", *tmp, val);
+      break;
+
+    default:
+      printf("*tmp: %c\n", *tmp);
+      return 0;
+    }
+  }
 }
