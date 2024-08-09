@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-10 00:36:35
+ * @LastEditTime: 2024-08-10 00:44:20
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -110,6 +110,14 @@ struct example {
 
 #define LIKELY(x) __builtin_expect(!!(x), 1)   // x很可能为真
 #define UNLIKELY(x) __builtin_expect(!!(x), 0) // x很可能为假
+
+/**
+ * 9.asmlinkage
+ */
+
+// 对于x86架构
+// 用于告诉编译器不需要通过任何寄存器来传递参数，只通过栈来传递
+#define asmlinkage CPP_ASMLINKAGE __attribute__((regparm(0)))
 
 void main() {
 
