@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-10 00:44:20
+ * @LastEditTime: 2024-08-10 00:54:26
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -42,7 +42,6 @@
     typeof(x) _min1 = (x);                                                     \
     typeof(y) _min2 = (y);                                                     \
     (void)(&_min1 == &_min2);                                                  \
-    \    
     _min1 < _min2                                                              \
         ? _min1                                                                \
         : _min2;                                                               \
@@ -61,7 +60,7 @@
 
 struct line {
   int length;
-  char contents[0]
+  char contents[0];
 };
 
 typedef char *(*_get_name)();
@@ -118,6 +117,16 @@ struct example {
 // 对于x86架构
 // 用于告诉编译器不需要通过任何寄存器来传递参数，只通过栈来传递
 #define asmlinkage CPP_ASMLINKAGE __attribute__((regparm(0)))
+
+/**
+ * 10.UL
+ * 数字常量会被隐式的定义为int类型，将两个int类型数据相加的结果可能会发生溢出，因此使用UL强制把int类型的
+ * 数据转换为unsigned
+ * long类型，这是为了保证运算过程不会因为int的位数不同而导致溢出。
+ */
+
+#define MIN 1    // 表示有符号整数数字1
+#define MAX 10UL // 表示无符号长整型数字10
 
 void main() {
 
