@@ -82,6 +82,13 @@ struct Student {
 
 #define debug_info(fmt, ...) printf(fmt, ##__VA_ARGS__)
 
+/**
+ * 6.函数属性
+ * 格式: __attribute__((attribute-list))
+ */
+
+void __attribute__((noreturn)) die(void);
+
 void main() {
 
   /**
