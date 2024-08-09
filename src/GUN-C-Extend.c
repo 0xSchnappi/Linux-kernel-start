@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-10 00:20:48
+ * @LastEditTime: 2024-08-10 00:36:35
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -102,6 +102,15 @@ struct example {
   unsigned int e : 8; // 位域，位对齐
 } __attribute__((packed));
 
+/**
+ * 8.内建函数
+ * 由GNU C提供了一系列内建函数以进行优化，内建函数以"_builtin_"作为前缀
+ * __builtin_expect用于分支预测，加快执行效率的
+ */
+
+#define LIKELY(x) __builtin_expect(!!(x), 1)   // x很可能为真
+#define UNLIKELY(x) __builtin_expect(!!(x), 0) // x很可能为假
+
 void main() {
 
   /**
@@ -175,4 +184,13 @@ void main() {
   };
 
   debug_info("Hello world - %s", "0xSchnappi");
+
+  for (size_t i = 0; i < 50; i++) {
+    // 很明显50以内，能被5整除的数字占少数，就可以使用UNLIKELY进行分支预测进行优化
+    if (UNLIKELY(i % 5 == 0)) {
+      ;
+    } else {
+      ;
+    }
+  }
 }
