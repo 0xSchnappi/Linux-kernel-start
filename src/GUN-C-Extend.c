@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-10 00:01:29
+ * @LastEditTime: 2024-08-10 00:20:48
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -88,6 +88,19 @@ struct Student {
  */
 
 void __attribute__((noreturn)) die(void);
+
+/**
+ * 7.变量属性和类型属性
+ * 常见的有：alignment、packed和sections
+ * packed 对变量以字节对齐，对域以位对齐
+ */
+struct example {
+  char a;             // 普通变量，字节对齐
+  int b;              // 普通变量，字节对齐
+  unsigned int c : 3; // 位域，位对齐
+  unsigned int d : 5; // 位域，位对齐
+  unsigned int e : 8; // 位域，位对齐
+} __attribute__((packed));
 
 void main() {
 
