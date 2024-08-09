@@ -4,6 +4,8 @@
 
 ### Linux 内核中常用的C语言技巧
 
+[gcc-14.2资料](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/#toc-Extensions-to-the-C-Language-Family)
+
 - 语句表达式
 
 - 变长数组

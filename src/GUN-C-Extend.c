@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-06 23:00:16
+ * @LastEditTime: 2024-08-09 23:46:54
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -64,6 +64,17 @@ struct line {
   char contents[0]
 };
 
+typedef char *(*_get_name)();
+char *get_student_name() { return "0xSchnappi"; }
+
+typedef int (*_get_count)();
+int get_student_count() { return 10; }
+
+struct Student {
+  _get_name get_name;
+  _get_count get_count;
+};
+
 void main() {
 
   /**
@@ -120,4 +131,15 @@ void main() {
       return 0;
     }
   }
+
+  /**
+   * 标号元素
+   * 初始化不需要按照结构体定义的顺序进行初始化
+   * 未初始化的成员的值为0或NULL
+   * 这种经常出现在Linux内核处理不同平台的问题上
+   */
+
+  static const struct Student middleSchool = {
+      .get_count = get_student_count,
+  };
 }
