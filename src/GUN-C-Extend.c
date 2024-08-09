@@ -2,7 +2,7 @@
  * @Author: 0xSchnappi 952768182@qq.com
  * @Date: 2024-08-06 20:16:43
  * @LastEditors: 0xSchnappi 952768182@qq.com
- * @LastEditTime: 2024-08-09 23:46:54
+ * @LastEditTime: 2024-08-10 00:01:29
  * @FilePath: /Linux-kernel-start/src/GUN-C-Extend.c
  * @Description: GUN C 扩展
  *
@@ -75,6 +75,13 @@ struct Student {
   _get_count get_count;
 };
 
+/**
+ * 5.可变参数宏
+ * 主要运用在输出函数中
+ */
+
+#define debug_info(fmt, ...) printf(fmt, ##__VA_ARGS__)
+
 void main() {
 
   /**
@@ -128,12 +135,16 @@ void main() {
 
     default:
       printf("*tmp: %c\n", *tmp);
-      return 0;
+      break;
+    }
+
+    if (*tmp < '0' || *tmp > '8') {
+      break; // 退出 while 循环
     }
   }
 
   /**
-   * 标号元素
+   * 4.标号元素
    * 初始化不需要按照结构体定义的顺序进行初始化
    * 未初始化的成员的值为0或NULL
    * 这种经常出现在Linux内核处理不同平台的问题上
@@ -142,4 +153,6 @@ void main() {
   static const struct Student middleSchool = {
       .get_count = get_student_count,
   };
+
+  debug_info("Hello world - %s", "0xSchnappi");
 }
